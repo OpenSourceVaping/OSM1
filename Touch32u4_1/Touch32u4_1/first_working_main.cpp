@@ -1,9 +1,14 @@
-/*
- * main.cpp
- *
- * Created: 08/12/2017
- * Author : trk
- */ 
+//
+// main.cpp
+//
+// Created: 08/12/2017
+// Original code adapted from: https://github.com/jgeisler0303/QTouchADCArduino
+// Author : trk - Converted to Atmel Studio and added support for 328P and 32u4
+// BLE: http://www.raytac.com/products.php?subid=57
+//
+//
+// trk -	09/03/2017 -	cleaned output output to supply full power.
+//							added this comment.       
  
 #define F_CPU 16000000L // Specify oscillator frequency
 #include <avr/io.h>
@@ -103,7 +108,7 @@
  		OCR1A = pwmv;
  }
 
- uint8_t loop(void) 
+ uint8_t touchLoop(void) 
  {	 
 	 // 4 measurements are taken and averaged to improve noise immunity
 	 for (int i=0; i<4; i++) {
@@ -260,14 +265,26 @@ int main(void)
 	{
 		uint16_t adcv;
 
-		if (loop() > 5)
+		// Wait until touch says we have something more than noise.
+		//
+		if (touchLoop() > 20)
 		{
 			adcv = 0;
+
+			// Two samples and average...
+			//
 			adcv += adcRead(7) & 0x3FF;
 			adcv += adcRead(7) & 0x3FF;
 			adcv = adcv / 2;
+
+			// Squash down to 0..255 and clamp
+			//
+			adcv = 0xFF & (adcv >> 3);
 			
-			if (((adcv >> 3) & 0x7) > 0)
+			// Check that we have at least some significant bits.
+			// Fire if we do...
+			//
+			if ((adcv & 0xF8) > 0)
 			{
 				if (!outputEnabled)
 				{
@@ -275,11 +292,13 @@ int main(void)
 					outputEnabled = 1;
 				}
 
-				//pwmOut(ledFadeTable[adcv]);
-				pwmOut(adcv >> 3);
+				pwmOut(0xFF & (adcv + 30));
 			}
 			else
 			{
+				// Drop into tri-state and disable PWM.
+				// In tri-state the 15K resistor will shut down the MOSFET.
+				//
 				if (outputEnabled)
 				{
 					pwmSetState(1);
@@ -291,6 +310,8 @@ int main(void)
 		}
 		else
 		{
+			// No touch, shutdown as above.
+			//
 			if (outputEnabled)
 			{
 				pwmSetState(1);
@@ -300,7 +321,7 @@ int main(void)
 			pwmOut(0);
 		}
 
-	  	 _delay_ms(50); // take 100 measurements per second
+	  	 _delay_ms(50); // take 20 measurements per second
 
 	}
 

@@ -1,0 +1,437 @@
+
+Touch328P_1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000040  00800100  0000029e  00000332  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000029e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000006  00800140  00800140  00000372  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000372  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000003a4  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000048  00000000  00000000  000003e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000009af  00000000  00000000  0000042c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000007c7  00000000  00000000  00000ddb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000398  00000000  00000000  000015a2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000080  00000000  00000000  0000193c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000486  00000000  00000000  000019bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000021a  00000000  00000000  00001e42  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000038  00000000  00000000  0000205c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	ee e9       	ldi	r30, 0x9E	; 158
+  7c:	f2 e0       	ldi	r31, 0x02	; 2
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a0 34       	cpi	r26, 0x40	; 64
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	a0 e4       	ldi	r26, 0x40	; 64
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a6 34       	cpi	r26, 0x46	; 70
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 18 01 	call	0x230	; 0x230 <main>
+  9e:	0c 94 4d 01 	jmp	0x29a	; 0x29a <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <_Z11touch_setupv>:
+	 return ADC; // return conversion result
+ }
+ 
+ void pwmOut(int8_t pwmv)
+ {
+ 		OCR1A = pwmv;
+  a6:	80 e4       	ldi	r24, 0x40	; 64
+  a8:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7e007c>
+  ac:	84 ec       	ldi	r24, 0xC4	; 196
+  ae:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7e007a>
+  b2:	10 92 7b 00 	sts	0x007B, r1	; 0x80007b <__TEXT_REGION_LENGTH__+0x7e007b>
+  b6:	ea e7       	ldi	r30, 0x7A	; 122
+  b8:	f0 e0       	ldi	r31, 0x00	; 0
+  ba:	80 81       	ld	r24, Z
+  bc:	86 fd       	sbrc	r24, 6
+  be:	fd cf       	rjmp	.-6      	; 0xba <_Z11touch_setupv+0x14>
+  c0:	08 95       	ret
+
+000000c2 <_Z11touch_probehhb>:
+  c2:	21 e0       	ldi	r18, 0x01	; 1
+  c4:	30 e0       	ldi	r19, 0x00	; 0
+  c6:	f9 01       	movw	r30, r18
+  c8:	08 2e       	mov	r0, r24
+  ca:	02 c0       	rjmp	.+4      	; 0xd0 <_Z11touch_probehhb+0xe>
+  cc:	ee 0f       	add	r30, r30
+  ce:	ff 1f       	adc	r31, r31
+  d0:	0a 94       	dec	r0
+  d2:	e2 f7       	brpl	.-8      	; 0xcc <_Z11touch_probehhb+0xa>
+  d4:	06 2e       	mov	r0, r22
+  d6:	02 c0       	rjmp	.+4      	; 0xdc <_Z11touch_probehhb+0x1a>
+  d8:	22 0f       	add	r18, r18
+  da:	33 1f       	adc	r19, r19
+  dc:	0a 94       	dec	r0
+  de:	e2 f7       	brpl	.-8      	; 0xd8 <_Z11touch_probehhb+0x16>
+  e0:	92 2f       	mov	r25, r18
+  e2:	9e 2b       	or	r25, r30
+  e4:	57 b1       	in	r21, 0x07	; 7
+  e6:	59 2b       	or	r21, r25
+  e8:	57 b9       	out	0x07, r21	; 7
+  ea:	44 23       	and	r20, r20
+  ec:	31 f0       	breq	.+12     	; 0xfa <_Z11touch_probehhb+0x38>
+  ee:	38 b1       	in	r19, 0x08	; 8
+  f0:	e0 95       	com	r30
+  f2:	e3 23       	and	r30, r19
+  f4:	2e 2b       	or	r18, r30
+  f6:	28 b9       	out	0x08, r18	; 8
+  f8:	05 c0       	rjmp	.+10     	; 0x104 <_Z11touch_probehhb+0x42>
+  fa:	38 b1       	in	r19, 0x08	; 8
+  fc:	20 95       	com	r18
+  fe:	23 23       	and	r18, r19
+ 100:	e2 2b       	or	r30, r18
+ 102:	e8 b9       	out	0x08, r30	; 8
+ 104:	60 64       	ori	r22, 0x40	; 64
+ 106:	ec e7       	ldi	r30, 0x7C	; 124
+ 108:	f0 e0       	ldi	r31, 0x00	; 0
+ 10a:	60 83       	st	Z, r22
+ 10c:	af e1       	ldi	r26, 0x1F	; 31
+ 10e:	be e4       	ldi	r27, 0x4E	; 78
+ 110:	11 97       	sbiw	r26, 0x01	; 1
+ 112:	f1 f7       	brne	.-4      	; 0x110 <_Z11touch_probehhb+0x4e>
+ 114:	00 c0       	rjmp	.+0      	; 0x116 <_Z11touch_probehhb+0x54>
+ 116:	00 00       	nop
+ 118:	27 b1       	in	r18, 0x07	; 7
+ 11a:	90 95       	com	r25
+ 11c:	29 23       	and	r18, r25
+ 11e:	27 b9       	out	0x07, r18	; 7
+ 120:	28 b1       	in	r18, 0x08	; 8
+ 122:	92 23       	and	r25, r18
+ 124:	98 b9       	out	0x08, r25	; 8
+ 126:	80 64       	ori	r24, 0x40	; 64
+ 128:	80 83       	st	Z, r24
+ 12a:	8f e1       	ldi	r24, 0x1F	; 31
+ 12c:	9e e4       	ldi	r25, 0x4E	; 78
+ 12e:	01 97       	sbiw	r24, 0x01	; 1
+ 130:	f1 f7       	brne	.-4      	; 0x12e <_Z11touch_probehhb+0x6c>
+ 132:	00 c0       	rjmp	.+0      	; 0x134 <_Z11touch_probehhb+0x72>
+ 134:	00 00       	nop
+ 136:	ea e7       	ldi	r30, 0x7A	; 122
+ 138:	f0 e0       	ldi	r31, 0x00	; 0
+ 13a:	80 81       	ld	r24, Z
+ 13c:	80 64       	ori	r24, 0x40	; 64
+ 13e:	80 83       	st	Z, r24
+ 140:	80 81       	ld	r24, Z
+ 142:	86 fd       	sbrc	r24, 6
+ 144:	fd cf       	rjmp	.-6      	; 0x140 <_Z11touch_probehhb+0x7e>
+ 146:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7e0078>
+ 14a:	90 91 79 00 	lds	r25, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7e0079>
+ 14e:	08 95       	ret
+
+00000150 <_Z4loopv>:
+ }
+
+ void loop() 
+ {	 
+ 150:	cf 93       	push	r28
+ 152:	df 93       	push	r29
+ 154:	c4 e0       	ldi	r28, 0x04	; 4
+ 156:	d0 e0       	ldi	r29, 0x00	; 0
+	 // 4 measurements are taken and averaged to improve noise immunity
+	 for (int i=0; i<4; i++) {
+		 // first measurement: charge touch probe, discharge ADC s&h cap, connect the two, measure the voltage
+		 adc1+= touch_probe(TPIN1, TPIN2, false); // accumulate the results for the averaging
+ 158:	40 e0       	ldi	r20, 0x00	; 0
+ 15a:	61 e0       	ldi	r22, 0x01	; 1
+ 15c:	80 e0       	ldi	r24, 0x00	; 0
+ 15e:	0e 94 61 00 	call	0xc2	; 0xc2 <_Z11touch_probehhb>
+ 162:	20 91 44 01 	lds	r18, 0x0144	; 0x800144 <adc1>
+ 166:	30 91 45 01 	lds	r19, 0x0145	; 0x800145 <adc1+0x1>
+ 16a:	82 0f       	add	r24, r18
+ 16c:	93 1f       	adc	r25, r19
+ 16e:	90 93 45 01 	sts	0x0145, r25	; 0x800145 <adc1+0x1>
+ 172:	80 93 44 01 	sts	0x0144, r24	; 0x800144 <adc1>
+
+		 // second measurement:discharge touch probe, charge ADC s&h cap, connect the two, measure the voltage
+		 adc2+= touch_probe(TPIN1, TPIN2, true); // accumulate the results for the averaging
+ 176:	41 e0       	ldi	r20, 0x01	; 1
+ 178:	61 e0       	ldi	r22, 0x01	; 1
+ 17a:	80 e0       	ldi	r24, 0x00	; 0
+ 17c:	0e 94 61 00 	call	0xc2	; 0xc2 <_Z11touch_probehhb>
+ 180:	20 91 42 01 	lds	r18, 0x0142	; 0x800142 <adc2>
+ 184:	30 91 43 01 	lds	r19, 0x0143	; 0x800143 <adc2+0x1>
+ 188:	82 0f       	add	r24, r18
+ 18a:	93 1f       	adc	r25, r19
+ 18c:	90 93 43 01 	sts	0x0143, r25	; 0x800143 <adc2+0x1>
+ 190:	80 93 42 01 	sts	0x0142, r24	; 0x800142 <adc2>
+ 194:	21 97       	sbiw	r28, 0x01	; 1
+ }
+
+ void loop() 
+ {	 
+	 // 4 measurements are taken and averaged to improve noise immunity
+	 for (int i=0; i<4; i++) {
+ 196:	01 f7       	brne	.-64     	; 0x158 <_Z4loopv+0x8>
+	 }
+	 adc1>>=2; // divide the accumulated measurements by 16
+	 adc2>>=2;
+
+	 // resulting raw touch value
+	 probe_val= adc1-adc2; // the value of adc1 (probe charged) gets higher when the probe its touched, the value of adc2 (s&h charged) gets lower when the probe is touched, so, it has to be be subtracted to amplify the detection accuracy
+ 198:	20 91 44 01 	lds	r18, 0x0144	; 0x800144 <adc1>
+ 19c:	30 91 45 01 	lds	r19, 0x0145	; 0x800145 <adc1+0x1>
+ 1a0:	36 95       	lsr	r19
+ 1a2:	27 95       	ror	r18
+ 1a4:	36 95       	lsr	r19
+ 1a6:	27 95       	ror	r18
+ 1a8:	96 95       	lsr	r25
+ 1aa:	87 95       	ror	r24
+ 1ac:	96 95       	lsr	r25
+ 1ae:	87 95       	ror	r24
+ 1b0:	a9 01       	movw	r20, r18
+ 1b2:	48 1b       	sub	r20, r24
+ 1b4:	59 0b       	sbc	r21, r25
+ 1b6:	ca 01       	movw	r24, r20
+ 1b8:	50 93 41 01 	sts	0x0141, r21	; 0x800141 <__data_end+0x1>
+ 1bc:	40 93 40 01 	sts	0x0140, r20	; 0x800140 <__data_end>
+ 1c0:	8b 55       	subi	r24, 0x5B	; 91
+ 1c2:	9f 4f       	sbci	r25, 0xFF	; 255
+ 1c4:	12 f4       	brpl	.+4      	; 0x1ca <_Z4loopv+0x7a>
+ 1c6:	80 e0       	ldi	r24, 0x00	; 0
+ 1c8:	90 e0       	ldi	r25, 0x00	; 0
+	 if(idx<0) idx= 0; // limit the index!!!
+	 idx/= TOUCH_VALUE_SCALE; // scale the index
+	 if(idx>31) idx= 31; // limit the index!!!
+	 
+	 // fade the LED
+	 pwmOut(ledFadeTable[idx]);
+ 1ca:	65 e0       	ldi	r22, 0x05	; 5
+ 1cc:	70 e0       	ldi	r23, 0x00	; 0
+ 1ce:	0e 94 25 01 	call	0x24a	; 0x24a <__divmodhi4>
+ 1d2:	60 32       	cpi	r22, 0x20	; 32
+ 1d4:	71 05       	cpc	r23, r1
+ 1d6:	14 f0       	brlt	.+4      	; 0x1dc <_Z4loopv+0x8c>
+ 1d8:	6f e1       	ldi	r22, 0x1F	; 31
+ 1da:	70 e0       	ldi	r23, 0x00	; 0
+ 1dc:	66 0f       	add	r22, r22
+ 1de:	77 1f       	adc	r23, r23
+ 1e0:	fb 01       	movw	r30, r22
+ 1e2:	e0 50       	subi	r30, 0x00	; 0
+ 1e4:	ff 4f       	sbci	r31, 0xFF	; 255
+	 return ADC; // return conversion result
+ }
+ 
+ void pwmOut(int8_t pwmv)
+ {
+ 		OCR1A = pwmv;
+ 1e6:	80 81       	ld	r24, Z
+ 1e8:	08 2e       	mov	r0, r24
+ 1ea:	00 0c       	add	r0, r0
+ 1ec:	99 0b       	sbc	r25, r25
+ 1ee:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
+ 1f2:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7e0088>
+	 if(idx>31) idx= 31; // limit the index!!!
+	 
+	 // fade the LED
+	 pwmOut(ledFadeTable[idx]);
+	 
+	 adc1= 0; // clear the averaging variables for the next run
+ 1f6:	10 92 45 01 	sts	0x0145, r1	; 0x800145 <adc1+0x1>
+ 1fa:	10 92 44 01 	sts	0x0144, r1	; 0x800144 <adc1>
+	 adc2= 0;
+ 1fe:	10 92 43 01 	sts	0x0143, r1	; 0x800143 <adc2+0x1>
+ 202:	10 92 42 01 	sts	0x0142, r1	; 0x800142 <adc2>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 206:	8f e3       	ldi	r24, 0x3F	; 63
+ 208:	9c e9       	ldi	r25, 0x9C	; 156
+ 20a:	01 97       	sbiw	r24, 0x01	; 1
+ 20c:	f1 f7       	brne	.-4      	; 0x20a <_Z4loopv+0xba>
+ 20e:	00 c0       	rjmp	.+0      	; 0x210 <_Z4loopv+0xc0>
+ 210:	00 00       	nop
+	 _delay_ms(10); // take 100 measurements per second
+ }
+ 212:	df 91       	pop	r29
+ 214:	cf 91       	pop	r28
+ 216:	08 95       	ret
+
+00000218 <_Z8pwmSetupv>:
+
+	/**
+	 * We will be using OCR1A as our PWM output which is the
+	 * same pin as PB1.
+	 */
+	DDRB |= _BV(PB1);
+ 218:	21 9a       	sbi	0x04, 1	; 4
+	 * a compare value (which will be explained below).  CS10 being
+	 * set simply turns the timer on without a prescaler (so at full
+	 * speed).  The timer is used to determine when the PWM pin should be
+	 * on and when it should be off.
+	 */
+	TCCR1A |= _BV(COM1A1) | _BV(WGM10);
+ 21a:	e0 e8       	ldi	r30, 0x80	; 128
+ 21c:	f0 e0       	ldi	r31, 0x00	; 0
+ 21e:	80 81       	ld	r24, Z
+ 220:	81 68       	ori	r24, 0x81	; 129
+ 222:	80 83       	st	Z, r24
+	TCCR1B |= _BV(CS10) | _BV(WGM12);
+ 224:	e1 e8       	ldi	r30, 0x81	; 129
+ 226:	f0 e0       	ldi	r31, 0x00	; 0
+ 228:	80 81       	ld	r24, Z
+ 22a:	89 60       	ori	r24, 0x09	; 9
+ 22c:	80 83       	st	Z, r24
+ 22e:	08 95       	ret
+
+00000230 <main>:
+        _delay_ms(250);
+        PORTB = 0b00000000; // set 7th bit to LOW
+        _delay_ms(500);
+    }
+*/
+	touch_setup();
+ 230:	0e 94 53 00 	call	0xa6	; 0xa6 <_Z11touch_setupv>
+	pwmSetup();
+ 234:	0e 94 0c 01 	call	0x218	; 0x218 <_Z8pwmSetupv>
+	 return ADC; // return conversion result
+ }
+ 
+ void pwmOut(int8_t pwmv)
+ {
+ 		OCR1A = pwmv;
+ 238:	8c e3       	ldi	r24, 0x3C	; 60
+ 23a:	90 e0       	ldi	r25, 0x00	; 0
+ 23c:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>
+ 240:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7e0088>
+
+	pwmOut(60);
+
+	while(1)
+	{
+	  loop();
+ 244:	0e 94 a8 00 	call	0x150	; 0x150 <_Z4loopv>
+ 248:	fd cf       	rjmp	.-6      	; 0x244 <main+0x14>
+
+0000024a <__divmodhi4>:
+ 24a:	97 fb       	bst	r25, 7
+ 24c:	07 2e       	mov	r0, r23
+ 24e:	16 f4       	brtc	.+4      	; 0x254 <__divmodhi4+0xa>
+ 250:	00 94       	com	r0
+ 252:	07 d0       	rcall	.+14     	; 0x262 <__divmodhi4_neg1>
+ 254:	77 fd       	sbrc	r23, 7
+ 256:	09 d0       	rcall	.+18     	; 0x26a <__divmodhi4_neg2>
+ 258:	0e 94 39 01 	call	0x272	; 0x272 <__udivmodhi4>
+ 25c:	07 fc       	sbrc	r0, 7
+ 25e:	05 d0       	rcall	.+10     	; 0x26a <__divmodhi4_neg2>
+ 260:	3e f4       	brtc	.+14     	; 0x270 <__divmodhi4_exit>
+
+00000262 <__divmodhi4_neg1>:
+ 262:	90 95       	com	r25
+ 264:	81 95       	neg	r24
+ 266:	9f 4f       	sbci	r25, 0xFF	; 255
+ 268:	08 95       	ret
+
+0000026a <__divmodhi4_neg2>:
+ 26a:	70 95       	com	r23
+ 26c:	61 95       	neg	r22
+ 26e:	7f 4f       	sbci	r23, 0xFF	; 255
+
+00000270 <__divmodhi4_exit>:
+ 270:	08 95       	ret
+
+00000272 <__udivmodhi4>:
+ 272:	aa 1b       	sub	r26, r26
+ 274:	bb 1b       	sub	r27, r27
+ 276:	51 e1       	ldi	r21, 0x11	; 17
+ 278:	07 c0       	rjmp	.+14     	; 0x288 <__udivmodhi4_ep>
+
+0000027a <__udivmodhi4_loop>:
+ 27a:	aa 1f       	adc	r26, r26
+ 27c:	bb 1f       	adc	r27, r27
+ 27e:	a6 17       	cp	r26, r22
+ 280:	b7 07       	cpc	r27, r23
+ 282:	10 f0       	brcs	.+4      	; 0x288 <__udivmodhi4_ep>
+ 284:	a6 1b       	sub	r26, r22
+ 286:	b7 0b       	sbc	r27, r23
+
+00000288 <__udivmodhi4_ep>:
+ 288:	88 1f       	adc	r24, r24
+ 28a:	99 1f       	adc	r25, r25
+ 28c:	5a 95       	dec	r21
+ 28e:	a9 f7       	brne	.-22     	; 0x27a <__udivmodhi4_loop>
+ 290:	80 95       	com	r24
+ 292:	90 95       	com	r25
+ 294:	bc 01       	movw	r22, r24
+ 296:	cd 01       	movw	r24, r26
+ 298:	08 95       	ret
+
+0000029a <_exit>:
+ 29a:	f8 94       	cli
+
+0000029c <__stop_program>:
+ 29c:	ff cf       	rjmp	.-2      	; 0x29c <__stop_program>
